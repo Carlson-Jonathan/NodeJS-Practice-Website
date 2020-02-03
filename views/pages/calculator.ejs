@@ -1,0 +1,25 @@
+<p>Enter some numbers in the boxes below, select the operation, the click "submit" for the answer.</p>
+
+<div class="column">
+    <form action="/calculate" method="post">
+        <input type="number" name="num1"></input><br>
+        <input type="number" name="num2"></input><br>
+            <select name="operation">
+                <option value="add">Add</option>
+                <option value="sub">Subtract</option>
+                <option value="mul">Multiply</option>
+                <option value="div">Divide</option>
+            </select>
+            <input type="submit" name="submit" value="Calculate">
+    </form>
+</div>
+
+<div class="column">
+    <p id="ans">Answer: <%= answer %></p>
+</div>
+
+<script>
+    document.getElementById("pageTitle").innerHTML = "Calculator Page";
+    document.getElementById("nav2").style.color = "orange";
+</script>
+
