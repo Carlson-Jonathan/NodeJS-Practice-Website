@@ -1,0 +1,35 @@
+<h3>Current Database Table:</h3>
+
+<table>
+    <tr> 
+        <th>Name</th>   
+        <th>Age</th>   
+        <th>Weapon</th>   
+    </tr>
+    <% people.forEach(person => { %>
+        <tr>
+            <td><%= person.name %></td>
+            <td><%= person.age %></td>
+            <td><%= person.weapon %></td>
+            <td>
+                <form action="/deleteDatabaseItem" method="get">
+                    <input type="submit" value="delete" name="<%= person.name %>">
+                    <input type="hidden" value="<%= person.name %>" name="deleteMe">
+                </form>
+            </td>
+        </tr>
+    <% }) %>
+    <tr>
+        <form action="/database" method="post">
+            <td><input type="text" name="name"></td>
+            <td><input type="number" name="age"></td>
+            <td><input type="text" name="weapon"></td>
+            <td><input type="submit" value="Add"></td>
+        </form>
+    </tr>
+<table>
+
+<script>
+    document.querySelector("h1").innerHTML = "Mongo Database";
+    document.getElementById("nav3").style.color = "orange";
+</script>

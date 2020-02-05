@@ -4,11 +4,7 @@ exports.wrapper1 = function(app) {
         res.render("templates/pageTemplate", page);
     });
 
-    app.get("/calculator", function(req, res) {
-        const page = {"page": "calculator.ejs", "answer": 0};
-        res.render("templates/pageTemplate", page);
-    });
-    
+    // Pulls in the "/calculator" url functions
     const calculator = 
         require(__dirname + "/calculator.js");
     calculator.calculate(app);

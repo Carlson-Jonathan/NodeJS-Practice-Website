@@ -18,7 +18,7 @@ app.listen(3000, function() {
 // Connect to Mongoose database
 const startDB = 
     require(__dirname + "/serversideScripts/mongooseDB.js");
-startDB.startDB();
+startDB.startDB(app);
 
 // Pulls in all of the 'get' and 'post' functions
 const loadGets = 

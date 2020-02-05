@@ -1,4 +1,10 @@
 exports.calculate = function(app) {
+
+    app.get("/calculator", function(req, res) {
+        const page = {"page": "calculator.ejs", "answer": 0};
+        res.render("templates/pageTemplate", page);
+    });
+
     app.post("/calculate", function(req, res) {
         
         let oper = req.body.operation, num,
