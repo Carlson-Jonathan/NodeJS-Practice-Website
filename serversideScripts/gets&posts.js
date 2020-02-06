@@ -13,5 +13,10 @@ exports.wrapper1 = function(app) {
         const page = {"page": "test.ejs"};
         res.render("templates/pageTemplate", page);
     });
+
+    app.get("/accounts", function(req, res) {
+        const page = {"page": "userAccounts.ejs"};
+        res.render("templates/pageTemplate", page);
+    });
 }
 

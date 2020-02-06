@@ -162,4 +162,54 @@ exports.startDB = function(app) {
         });
         res.redirect("/database");
     });
+
+
+
+    /****************************************************************
+     * Accounts - usernames/passwords - Encryptions 
+     * Requires "mongoose-encrypt" 
+        * The plugin code automatically encrypts the information in the
+        * "encryptedFields:" section. Data is encrypted on save() before
+        * storing to the database. It also decrypts when the data is
+        * pulled from the database. You can encrypt multiple fields with
+        * ["password", "field2", "field3", "..."]. A key is required to
+        * encrypt and decrypt text. Technically, you could save it as a
+        * variable, but that would expose it and people could crack your
+        * encryptions. Instead, we will store it in the ".env" file in
+        * the root, which keeps it safe and hidden. Access it with
+        * "process.env.(variablename)". Just make sure not to upload it
+        * anywhere (place in ".gitignore" file).
+    ****************************************************************/
+    const encrypt = require("mongoose-encryption");
+    
+    // Set class template
+    const accountsSchema = new mongoose.Schema({
+        userName: String,
+        password: String
+    });
+    
+    accountsSchema.plugin(encrypt, { secret: process.env.SECRET, encryptedFields: ["password"] });
+
+    // Set row name (table name is auto-set to "users")
+    const User = new mongoose.model("User", accountsSchema);
+
+    // Fill row
+    const newUser = new User({
+        userName: "Jonnyboy",
+        password: "Brocolii"
+    });
+
+    // newUser.save();
+
+
+    /****************************************************************
+     * Accounts - usernames/passwords - Hashes 
+     * Requires "md5" 
+     * There is a much higher security hashing algorithim available
+     * called "bcrypt" but it is a pain to install and use.
+    ****************************************************************/
+    const md5 = require("md5");
+
+    // Yup, it is as simple as this:
+    // console.log(md5("You cannot guess my password"));
 }
